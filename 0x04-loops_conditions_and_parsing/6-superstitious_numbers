@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Displays numbers from 1 to 20 and the following
+# Displays numbers from 1 to 20 and
 # the string "bad luck from China" in the 4th loop
 # the string "bad luck from Japan" in the 9th loop
 # the string "bad luck from Italy" in the 17th loop
