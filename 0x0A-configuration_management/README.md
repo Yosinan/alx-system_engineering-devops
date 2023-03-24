@@ -1,6 +1,6 @@
 # 0x0A. Configuration management
 ## Using puppet
-(https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/292/4i8il3B.gif)
+[https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/292/4i8il3B.gif]
 - DevOps
 - SysAdmin
 - Scripting
