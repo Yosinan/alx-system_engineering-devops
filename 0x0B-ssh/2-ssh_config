@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# client configuration file - to refuse authentication using passwword
+Host default
+  HostName 100.24.235.9
+  User ubuntu
+  Port 22
+  PasswordAuthentication no
+  IdentityFile ~/.ssh/school
