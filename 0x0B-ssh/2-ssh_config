@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# client configuration file - to refuse authentication using passwword
+# Client configuration file
 Host default
-  HostName 34.227.101.45
+  HostName 18.235.248.166
   User ubuntu
   Port 22
   PasswordAuthentication no
