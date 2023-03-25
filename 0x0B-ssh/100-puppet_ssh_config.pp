@@ -5,7 +5,7 @@ file_line {  'pwd_no_autentication':
   path => '/etc/ssh/ssh_config',
   line => 'PasswordAuthentication no',
 }
-file_line {  'pwd_direction':
+file_line {  pwd_direction':
   path => '/etc/ssh/ssh_config',
   line => 'IdentityFile ~/.ssh/school',
 }
