@@ -2,6 +2,9 @@
 # a bash script that installs nginx webserver
 
 sudo apt-get -y update && sudo apt-get -y install nginx
-echo "Hello World!" | sudo tee /var/www/html/index.html
-sudo sed -i "/server_name _;/ a\\\trewrite ^/redirect_me/?.*$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+ufw allow 'Nginx HTTP'
+echo "301 Moved Permanently" > /var/www/html/index.nginx-debian.html
+sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+
 sudo service nginx start
