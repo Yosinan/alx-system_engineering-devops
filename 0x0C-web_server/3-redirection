@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # configure my Nginx server so that /redirect_me is redirecting
 # to another page.
-sudo apt-get update -y
-sudo apt-get install -y nginx
+apt-get update -y
+apt-get install -y nginx
 
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
-sudo sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://github.com/Yosinan/ permanent;" /etc/nginx/sites-enabled/default
+ sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://github.com/Yosinan/ permanent;" /etc/nginx/sites-enabled/default
 
-sudo service nginx restart
+service nginx restart
