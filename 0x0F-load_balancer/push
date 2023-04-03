@@ -1,6 +1,7 @@
-#!/bin/bash
+#/bin/bash
 
-git add .
-git commit -m "0x0F. Load balancer"
-git push
+chmod u+x *
 
+git add . 
+git commit -m "Load Balancer"
+git push 
