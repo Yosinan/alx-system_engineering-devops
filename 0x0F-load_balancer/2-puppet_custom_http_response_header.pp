@@ -4,18 +4,18 @@ exec { 'update':
 }
 
 package { 'nginx':
-  ensure => installed,
+  ensure  => installed,
   require => Exec['update'],
 }
 
 # the header
 
 file_line { 'cust_header':
-  path => '/etc/nginx/sites-available/default',
-  ensure => 'present',
-  after => 'serrver_name _:',
+  ensure  => 'present',
+  path    => '/etc/nginx/sites-available/default',
+  after   => 'serrver_name _:',
  # target => '/etc/nginx/nginx.conf',
-  line => "\t add_header X-Served-By ${hostname};",
+  line    => "\t add_header X-Served-By ${hostname};",
   require => package['nginx'],
 }
 
@@ -24,7 +24,7 @@ file { '/var/www/html/index.html':
 }
 
 service { 'nginx':
-  ensure => running,
+  ensure  => running,
   require => File_line['cust_header'],
   command => 'usr/sbin/ service nginx restart',}
 }
