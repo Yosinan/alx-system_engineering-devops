@@ -8,7 +8,7 @@ echo "Hello world!" | sudo tee /var/www/html/index.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 sudo sed -i "/server_name _;/ a\\\trewrite ^/redirect_me/?.*$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
 sudo sed -i "/server_name _;/ a\\\terror_page 404 /404.html;" /etc/nginx/sites-available/default
-sudo sed -i "/server_name _;/ a\\\tadd_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
-
+#sudo sed -i "/server_name _;/ a\\\tadd_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
+sudo sed -i "/http;/ a\\\tproxy_set_header X-Served-By $host;" /etc/nginx/nginx.conf
 # restarting nginx
 sudo service nginx restart
