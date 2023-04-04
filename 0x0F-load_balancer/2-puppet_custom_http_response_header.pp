@@ -18,7 +18,12 @@ file_line { 'cust_header':
   line => "\t add_header X-Served-By ${hostname};",
   require => package['nginx'],
 }
-service { 'run':
+
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
+}
+
+service { 'nginx':
   ensure => running,
   require => File_line['cust_header'],
   command => 'usr/sbin/ service nginx restart',}
