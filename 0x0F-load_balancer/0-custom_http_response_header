@@ -13,4 +13,4 @@ mkdir -p /var/www/html
 echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
 sudo sed -i -E "s/^[^#]+location \/ \{/$err_msg/" /etc/nginx/sites-available/default
 sudo sed -i -E "s/^server \{/$header_msg/" /etc/nginx/sites-available/default
-sudo service restart nginx 
+sudo service nginx restart  
