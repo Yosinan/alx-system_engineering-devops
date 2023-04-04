@@ -2,9 +2,9 @@
 # we want to add a custom Nginx response header the name of the custom HTTP header must be X-Served-By
 # HTTP response contains a custom header (on web-01 and web-02)
 # web-02 to be identical to web-01
-$HOST_NAME=$(hostname)
-$err_msg="error_page 404 \/custom_404.html;\n location \/redirect_me {\n return 301 \$scheme:\/\/www.google.com;"
-$header_msg="server {\n\tadd_header X-Served-By $HOST_NAME;"
+HOST_NAME=$(hostname)
+err_msg="error_page 404 \/custom_404.html;\n location \/redirect_me {\n return 301 \$scheme:\/\/www.google.com;"
+header_msg="server {\n\tadd_header X-Served-By $HOST_NAME;"
 
 apt-get update -y
 apt-get install nginx -y
@@ -13,4 +13,4 @@ mkdir -p /var/www/html
 echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
 sudo sed -i -E "s/^[^#]+location \/ \{/$err_msg/" /etc/nginx/sites-available/default
 sudo sed -i -E "s/^server \{/$header_msg/" /etc/nginx/sites-available/default
-sudo service nginx start
+sudo service restart nginx 
