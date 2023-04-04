@@ -2,6 +2,7 @@
 # this script will install and configure HAproxy on my lb-01 server                          
 apt-get update -y
 apt-get install --no-install-recommends software-properties-common
+add-apt-repository ppa:vbernat/haproxy-2.7
 apt-get install haproxy=2.7.\*
 ser_con="\n\tbind :80\n\tmode http\n\tuse_backend mybackend\nbackend mybackend\n\tbalance roundrobin\n\tserver 118467-web-01 18.235.248.166:80 check\n\tserver 118467-web-02 100.26.226.17:80 check"
 sed -i '/errorfile 504/a frontend myconf' /etc/haproxy/haproxy.cfg
