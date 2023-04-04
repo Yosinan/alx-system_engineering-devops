@@ -1,18 +1,25 @@
 # this will automate tge previous task i've done( creating custom header for the http response)
+exec { 'update':
+  command => '/usr/bin/env apt-get update -y',
+}
+
 package { 'nginx':
   ensure => installed,
-}
-package { 'nginx':
-  ensure => 'present',
+  require => Exec['update'],
 }
 
-header { 'cust_header':
-  ensure => 'present',
-  value => '${hostname}',
-  target => '/etc/nginx/nginx.conf',
-  line => "http {\n\t add_header X-Served-By \"${hostname}\";",
-}
+# the header
 
-exec { 'execute':
+fiel_line { 'cust_header':
+  path => '/etc/nginx/sites-available/default',
+  ensure => 'present',
+  after => 'serrver_name _:',
+ # target => '/etc/nginx/nginx.conf',
+  line => "\t add_header X-Served-By ${hostname};",
+  require => package['nginx'],
+}
+service { 'run':
+  ensure => running,
+  require => File_line['cust_header'],
   command => 'usr/sbin/ service nginx restart',
 }
