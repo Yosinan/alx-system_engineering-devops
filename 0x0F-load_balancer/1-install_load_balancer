@@ -1,16 +1,16 @@
 #!/usr/bin/env bash                                                           
 # this script will install and configure HAproxy on my lb-01 server                          
-apt-get update -y
-apt-get install --no-install-recommends software-properties-common
-add-apt-repository ppa:vbernat/haproxy-2.0
-apt-get install haproxy=2.0.\*
+sudo apt-get update -y
+sudo apt-get install --no-install-recommends software-properties-common
+sudo add-apt-repository ppa:vbernat/haproxy-2.0
+sudo apt-get install haproxy=2.0.\*
 
 # this will edit the init script at /etc/default/haproxy and setting ENABLED to 1
 
 echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
 # if we wld like to archieve or keep the old config file we can move ot to new file
-mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.previous
+# mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.previous
 
 # now we start to configure the file
 {
