@@ -8,10 +8,10 @@ exec { 'update':
 }
 # the header
 -> file_line { 'cust_header':
-  ensure  => 'present',
-  path    => '/etc/nginx/sites-available/default',
+  ensure => 'present',
+  path   => '/etc/nginx/sites-available/default',
  # target => '/etc/nginx/nginx.conf',
-  line    => "http \n\t add_header X-Served-By \"${hostname}\";",
+  line   => "http \n\t add_header X-Served-By \"${hostname}\";",
 }
 -> file { '/var/www/html/index.html':
   content => 'Hello World!',
