@@ -2,8 +2,8 @@
 # this script will install and configure HAproxy on my lb-01 server                          
 apt-get update -y
 apt-get install --no-install-recommends software-properties-common
-add-apt-repository ppa:vbernat/haproxy-2.7
-apt-get install haproxy=2.7.\*
+add-apt-repository ppa:vbernat/haproxy-2.0
+apt-get install haproxy=2.0.\*
 
 # this will edit the init script at /etc/default/haproxy and setting ENABLED to 1
 
