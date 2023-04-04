@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# we want to add a custom Nginx response header the name of the custom HTTP header must be X-Served-By
+# HTTP response contains a custom header (on web-01 and web-02)
+# web-02 to be identical to web-01
+
+sudo apt update -y && sudo apt install nginx -y
+echo "Hello world!" | sudo tee /var/www/html/index.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+sudo sed -i "/server_name _;/ a\\\trewrite ^/redirect_me/?.*$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/ a\\\terror_page 404 /404.html;" /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/ a\\\tadd_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
+
+# restarting nginx
+sudo service nginx restart
