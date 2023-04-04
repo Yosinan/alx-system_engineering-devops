@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# we want to add a custom Nginx response header the name of the custom HTTP header must be X-Served-By
-# HTTP response contains a custom header (on web-01 and web-02)
-# web-02 to be identical to web-01
+# this will  add a custom Nginx response header the name of the custom HTTP header must be X-Served-By ... HTTP response contains a custom header
+
 
 sudo apt update -y && sudo apt install nginx -y
 echo "Hello world!" | sudo tee /var/www/html/index.html
