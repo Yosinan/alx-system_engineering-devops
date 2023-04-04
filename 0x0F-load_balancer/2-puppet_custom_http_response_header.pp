@@ -10,7 +10,7 @@ package { 'nginx':
 
 # the header
 
-fiel_line { 'cust_header':
+file_line { 'cust_header':
   path => '/etc/nginx/sites-available/default',
   ensure => 'present',
   after => 'serrver_name _:',
@@ -21,5 +21,5 @@ fiel_line { 'cust_header':
 service { 'run':
   ensure => running,
   require => File_line['cust_header'],
-  command => 'usr/sbin/ service nginx restart',
+  command => 'usr/sbin/ service nginx restart',}
 }
