@@ -12,5 +12,5 @@ exec { 'update':
 }
 -> exec { 'run':
   #require => File_line['cust_header'],
-  command => 'usr/sbin/ service nginx restart',}
+  command => 'usr/sbin/service nginx restart',
 }
