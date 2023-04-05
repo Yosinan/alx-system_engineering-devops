@@ -6,7 +6,7 @@ exec { 'update':
   ensure  => 'present',
 }
 # the header
--> file_line { 'cust_header':
+-> file_line { 'http_header':
   target => '/etc/nginx/nginx.conf',
   line   => "http {\n\tadd_header X-Served-By \"${hostname}\";",
 }
