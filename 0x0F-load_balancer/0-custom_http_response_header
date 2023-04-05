@@ -6,9 +6,12 @@ sudo apt-get update -y && sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 echo "Hello world!" | sudo tee /var/www/html/index.nginx-debian.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
-sudo sed -i "/server_name _;/ a\\\trewrite ^/redirect_me/?.*$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
-sudo sed -i "/server_name _;/ a\\\terror_page 404 /404.html;" /etc/nginx/sites-available/default
-sudo sed -i "\tadd_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
+red = "/server_name _;/ a\\\trewrite ^/redirect_me/?.*$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i $red /etc/nginx/sites-available/default
+sites = "/server_name _;/ a\\\terror_page 404 /404.html;"
+sudo sed -i $sites /etc/nginx/sites-available/default
+cus_head = "\tadd_header X-Served-By \$hostname;"
+sudo sed -i $cus_head /etc/nginx/sites-available/default
 
 # restarting nginx
 sudo service nginx restart
