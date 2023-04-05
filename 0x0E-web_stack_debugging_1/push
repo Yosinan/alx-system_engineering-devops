@@ -1,0 +1,10 @@
+#!/bin/bash
+# script to push all the files/scripts i wrote
+
+chmod u+x 0-nginx_likes_port_80 
+chmod u+x 1-debugging_made_short
+
+git add .
+git commit -m "Web stack debugging #1"
+git push
+
