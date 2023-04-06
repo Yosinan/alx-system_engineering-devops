@@ -32,7 +32,12 @@ defaults
         errorfile 502 /etc/haproxy/errors/502.http
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
-
+listen yosinan
+	bind :80
+	mode http
+	balance roundrobin
+	server 118467-web-01 18.235.248.166:80 check
+	server 118467-web-02 100.26.226.17:80 check
 backend web-backend
         balance roundrobin
         server 118467-web-01 18.235.248.166:80 check
