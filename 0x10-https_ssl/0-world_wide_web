@@ -5,7 +5,7 @@
 show_dom() {
 if [ "$2" ];
 then
-    echo -n "The subdomain $s is a"
+    echo -n "The subdomain $2 is a"
     dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk '{print " " $4 " record and points to "$5}' | tail -n 1
 else
     for subdom in www web-01 web-02 lb-01
