@@ -40,6 +40,10 @@ backend web-backend
         server 118467-web-01 18.235.248.166:80 check
         server 118467-web-02 100.26.226.17:80 check
 
-frontend https
+frontend www-http
+	bind *:80
+	default_backend web-backend
+
+frontend www-https
         bind *:443 ssl crt /etc/haproxy/certs/www.yosinan.tech.pem
         default_backend web-backend
