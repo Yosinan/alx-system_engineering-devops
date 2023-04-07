@@ -34,6 +34,8 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 
 backend web-backend
+	mode http
+	server web1 127.0.0.1:80 check
         balance roundrobin
         server 118467-web-01 18.235.248.166:80 check
         server 118467-web-02 100.26.226.17:80 check
