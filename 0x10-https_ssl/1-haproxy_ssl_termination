@@ -39,9 +39,7 @@ backend web-backend
         balance roundrobin
         server 118467-web-01 18.235.248.166:80 check
         server 118467-web-02 100.26.226.17:80 check
-        mode
 
 frontend https
         bind *:443 ssl crt /etc/haproxy/certs/www.yosinan.tech.pem
-        mode http
         default_backend web-backend
