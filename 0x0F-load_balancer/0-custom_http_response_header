@@ -10,8 +10,8 @@ red="server_name _;/ a\\\trewrite ^/redirect_me/?.*$ https://www.youtube.com/wat
 #sudo sed -i $red /etc/nginx/sites-enabled/default
 sites="/server_name _;/ a\\\terror_page 404 /404.html;"
 #sudo sed -i $sites /etc/nginx/sites-enabled/default
-cus_head="server_name _;\n\tadd_header X-Served-By \$hostname;"
+cus_head="server_name _;\n\tadd_header X-Served-By $hostname;"
 sudo sed -i "s/server_name _;/$cus_head/" /etc/nginx/sites-enabled/default
 
 # restarting nginx
-sudo systemctl  restart nginx
+sudo service nginx restart
