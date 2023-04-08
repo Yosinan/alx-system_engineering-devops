@@ -1,18 +1,21 @@
 # this will automate tge previous task i've done( creating custom header for the http response)
 
 exec { 'update':
-  command => '/usr/bin/apt-get update',
+  command => 'sudo apt-get -y update',
 }
 -> package { 'nginx':
   ensure  => 'present',
 }
-
--> file_line { 'cust_http_header':
+-> exec { 'nginx install':
+  provider => shell,
+  command => 'sudo apt-get install nginx -y',
+}
+-> exec { 'add_header':
   path  => '/etc/nginx/nginx.conf',
-  line  => "http {\n\tadd_header X-Served-By \"${hostname}\}";",
+  command  => 'sudo sed -i "s/include \/etc\/nginx\/sites-enabled\/\*;/include \/etc\/nginx\/sites-enabled\/\*;\n\tadd_header X-Served-By \"$hostname\";/" /etc/nginx/nginx.conf',
 }
 
 -> exec { 'run':
   
-  command => 'usr/sbin/service nginx restart',
+  command => 'sudo service nginx restart',
 }
