@@ -1,7 +1,6 @@
-# this will automate tge previous task i've done( creating custom header for the http response)
-
+# this will automate the previous task i've done(creating custom header for the http response)
 exec { 'update':
-  command => 'sudo apt-get -y update',
+  command => '/usr/bin/apt-get update',
 }
 
 package { 'nginx':
