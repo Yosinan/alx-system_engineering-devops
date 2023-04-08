@@ -6,13 +6,14 @@ exec { 'update':
 -> package { 'nginx':
   ensure  => 'present',
 }
-# the header
--> file_line { 'http_header':
+
+-> file_line { 'cust_http_header':
   path  => '/etc/nginx/nginx.conf',
   match => 'http {',
   line  => "http {\n\tadd_header X-Served-By \"${hostname}\";",
 }
+
 -> exec { 'run':
-  #require => File_line['cust_header'],
+  
   command => 'usr/sbin/service nginx restart',
 }
