@@ -9,8 +9,8 @@ sudo ufw allow 'Nginx HTTP'
 
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
-red="server_name _;/ a\\\trewrite ^/redirect_me/?.*$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
-sudo sed -i $red /etc/nginx/sites-enabled/default
+#red="server_name _;/ a\\\trewrite ^/redirect_me/?.*$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+#sudo sed -i $red /etc/nginx/sites-enabled/default
 sites="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
 sudo sed -i "s/listen 80 default_server;/$sites/" /etc/nginx/sites-enabled/default
 
