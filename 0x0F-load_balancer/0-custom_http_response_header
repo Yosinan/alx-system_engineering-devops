@@ -2,14 +2,17 @@
 # this will  add a custom Nginx response header the name of the custom HTTP header must be X-Served-By ... HTTP response contains a custom header
 
 
-sudo apt-get update -y && sudo apt-get -y install nginx
+sudo apt-get update
+sudo apt-get -y install nginx
+
 sudo ufw allow 'Nginx HTTP'
+
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 red="server_name _;/ a\\\trewrite ^/redirect_me/?.*$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
-#sudo sed -i $red /etc/nginx/sites-enabled/default
+sudo sed -i $red /etc/nginx/sites-enabled/default
 sites="/server_name _;/ a\\\terror_page 404 /404.html;"
-#sudo sed -i $sites /etc/nginx/sites-enabled/default
+sudo sed -i $sites /etc/nginx/sites-enabled/default
 cus_head="server_name _;\n\tadd_header X-Served-By $hostname;"
 sudo sed -i "s/server_name _;/$cus_head/" /etc/nginx/sites-enabled/default
 
