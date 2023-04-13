@@ -3,5 +3,4 @@
 git add .
 git commit -m "Blog Post"
 git push
-
 clear
