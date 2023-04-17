@@ -2,3 +2,14 @@
 # script to Block all incoming traffic but SSH, HTTPS SSL, HTTP and allow all outgoing traffic
 sudo apt-get update
 sudo apt-get install ufw
+
+# allowing all outgoing traffic
+sudo ufw default allow outgoing
+
+# denying all incoming traffic
+sudo ufw default deny incoming
+
+# allow only HTTPS, SSH and HTTP incoming traffic
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
