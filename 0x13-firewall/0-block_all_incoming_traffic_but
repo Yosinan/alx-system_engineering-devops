@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script to Block all incoming traffic but SSH, HTTPS SSL, HTTP and allow all outgoing traffic
+sudo apt-get update
+sudo apt-get install ufw
