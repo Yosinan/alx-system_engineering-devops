@@ -1,6 +1,6 @@
 #!/bin/bash
 
 git add .
-git commit -m "Web stack debugging #2 👾"
+git commit -m "Web stack debugging #2 👾👹"
 git push
 clear
