@@ -3,6 +3,7 @@
 sudo apt-get update
 sudo apt-get install ufw
 
+sudo ufw disable
 # allowing all outgoing traffic
 sudo ufw default allow outgoing
 
