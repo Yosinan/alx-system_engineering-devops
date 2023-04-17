@@ -13,3 +13,6 @@ sudo ufw default deny incoming
 sudo ufw allow ssh
 sudo ufw allow http
 sudo ufw allow https
+
+# enabling ufw
+sudo ufw enable 
