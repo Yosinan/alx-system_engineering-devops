@@ -7,7 +7,7 @@ usr="root"
 arch_name=$(date +"%d-%m-%Y").tar.gz
 
 # creating mysql dump
-mysqldump --all-databases -u$usr -p"$pass" > backup.sql
+mysqldump --all-databases -uholberton_user -p"$pass" > backup.sqli
 
 # compressing it to archieved file
 tar -czvf "$arch_name" backup.sql
