@@ -10,4 +10,4 @@ arch_name=$(date +"%d-%m-%Y").tar.gz
 mysqldump --all-databases -uroot -p"$1" > backup.sql
 
 # compressing it to archieved file
-tar -cvzf "$arch_name" backup.sql
+tar -czvf "$(date +%d-%m-%Y).tar.gz" backup.sql
