@@ -2,7 +2,6 @@
 ## DevOps, SysAdmin, MySQL
 ### Objective
 
-
 - What is the main role of a database
 - What is a database replica
 - What is the purpose of a database replica
