@@ -2,6 +2,8 @@
 '''
 an API that returns information about his/her TODO list progress.
 '''
+import csv
+import json
 import requests
 import sys
 
@@ -14,7 +16,7 @@ def get_employee_name(emp_id):
     returns employee name based on the id it receives
     '''
     res_employee = requests.get(empApi.format(emp_id)).json()
-    return res_employee['name']
+    return res_employee
 
 
 def get_todo_list(emp_id):
@@ -24,6 +26,18 @@ def get_todo_list(emp_id):
     res_todo = requests.get(todoApi.format(emp_id)).json()
 
     return res_todo
+
+
+def to_CSV(em, task):
+    '''
+    convert the todos of the employee into JSON file
+    '''
+
+    with open('{}.csv'.format(emp_id), 'w', newline='') as f:
+        csvWriter = csv.writer(f, quoting=csv.QUOTE_ALL)
+        for todo in task:
+            row = [em.get('id'), em.get('username'), todo.get('completed'),todo.get('title')]
+            csvWriter.writerow(row)
 
 
 if __name__ == '__main__':
@@ -38,17 +52,6 @@ if __name__ == '__main__':
     if not emp_id.isdigit():
         print('please enter a no for the employee id\n')
         sys.exit(1)
-    employeeName = get_employee_name(emp_id)
+    emp = get_employee_name(emp_id)
     todo_list = get_todo_list(emp_id)
-
-    total_tasks = len(todo_list)
-    completed_tasks = sum(1 for task in todo_list if task['completed'])
-
-    print('Employee {} is done with tasks({}/{}):'.format(employeeName,
-          completed_tasks, total_tasks))
-    '''
-    lists the completed tasks of a specific employee
-    '''
-    for task in todo_list:
-        if task['completed']:
-            print('{} {}'.format('\t', task['title']))
+    to_CSV(emp, todo_list)

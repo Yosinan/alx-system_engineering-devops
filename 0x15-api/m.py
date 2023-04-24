@@ -2,6 +2,7 @@
 '''
 an API that returns information about his/her TODO list progress.
 '''
+import csv
 import json
 import requests
 import sys
@@ -27,18 +28,16 @@ def get_todo_list(emp_id):
     return res_todo
 
 
-def to_JSON(em, task):
+def to_CSV(em, task):
     '''
     convert the todos of the employee into JSON file
     '''
-    res = {}
-    res[emp_id] = []
-    for todo in task:
-        row = {'task': todo.get('title'), 'completed': todo.get('completed'),
-               'username': em.get('username')}
-        res[emp_id].append(row)
-    with open('{}.json'.format(emp_id), 'w') as f:
-        json.dump(res, f)
+
+    with open('{}.csv'.format(emp_id), 'w', newline='') as f:
+        csvWriter = csv.writer(f, quoting=csv.QUOTE_ALL)
+        for todo in task:
+            row = [em.get('id'), em.get('username'), todo.get('completed'),todo.get('title')]
+            csvWriter.writerow(row)
 
 
 if __name__ == '__main__':
@@ -55,4 +54,4 @@ if __name__ == '__main__':
         sys.exit(1)
     emp = get_employee_name(emp_id)
     todo_list = get_todo_list(emp_id)
-    to_JSON(emp, todo_list)
+    to_CSV(emp, todo_list)
