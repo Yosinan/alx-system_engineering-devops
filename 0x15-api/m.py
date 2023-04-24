@@ -36,7 +36,11 @@ def to_CSV(em, task):
     with open('{}.csv'.format(emp_id), 'w', newline='') as f:
         csvWriter = csv.writer(f, quoting=csv.QUOTE_ALL)
         for todo in task:
-            row = [em.get('id'), em.get('username'), todo.get('completed'),todo.get('title')]
+            row = [
+                em.get('id'),
+                em.get('username'),
+                todo.get('completed'),
+                todo.get('title')]
             csvWriter.writerow(row)
 
 
