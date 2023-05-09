@@ -1,13 +1,18 @@
 #!/usr/bin/python3
 '''
-   Queries Reddit API and returns a list containing the titles of all hot articles for a given subreddit. If no results are found for the given subreddit, the function should return None
+   Queries Reddit API and returns a list containing the titles
+   of all hot articles for a given subreddit.
+   If no results are found for the given subreddit,
+   the function should return None
 '''
 import requests
 
 
 def recurse(subreddit, hot_list=[], after=''):
     '''
-    Recursive function that queries Reddit API and return lists containing the titles of hot articles for a given subreddit
+    Recursive function that queries Reddit API
+    and return lists containing the titles of hot articles
+    for a given subreddit
     '''
     if after is None:
         return hot_list
