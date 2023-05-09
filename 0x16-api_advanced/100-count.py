@@ -8,7 +8,7 @@
 import requests
 
 
-def recurse(subreddit, hot_list=[], after=''):
+def recurse(subreddit, res, after=''):
     '''
     Recursive function that queries Reddit API
     and return lists containing the titles of hot articles
@@ -26,20 +26,50 @@ def recurse(subreddit, hot_list=[], after=''):
         allow_redirects=False)
     if res.status_code == 200:
         posts = res.json()
-        for post in posts['data']['children']:
-            hot_list.append(post['data']['title'])
-        return recurse(subreddit, hot_list, posts['data']['after'])
+        hot_posts = posts['data']['children']
+        addTitle(res, hot_posts)
+        after = posts['data']['after']
+        if not after:
+            return
+        recurse(subreddit, res, after=after)
     else:
         return None
+
+
+def addTitle(res, hot_posts):
+    if len(hot_posts) == 0:
+        return
+
+    title = hot_posts[0]['data']['title'].split()
+    for word in title:
+        for key in res.keys():
+            y = re.compile("^{}$".format(key), re.I)
+            if y.findAll(word):
+                res[key] += 1
+    hot_posts.pop(0)
+    addTitle(res, hot_posts)
+
 
 def count_words(subreddit, word_list):
     '''
     parses the title of hot articles & prints SORTED count
     '''
-    word_list = list(map(str.lower, word_list))
     res = {}
-    titles = recurse(subreddit)
-    for title in titles:
+    for word in word_list:
+        res[word] = 0
+
+    recurse(subreddit, res)
+
+    w = sorted(res.items(), key=lambda kv:kv[1])
+    w.reverse()
+
+    if len(w) != 0:
+        for item in w:
+            if item[1] != 0:
+                print("{}: {}".format(item[0], item[1]))
+            else:
+                return
+            '''
         for word in word_list:
             if word in title:
                 if res.get(word) is None:
@@ -48,4 +78,4 @@ def count_words(subreddit, word_list):
     res = [(k, v) for k, v in res.items()]
     res.sort(key=lambda x: x[1], reverse=True)
     for k, v in res:
-        print('{}: {}'.format(k, v))
+        print('{}: {}'.format(k, v))'''
