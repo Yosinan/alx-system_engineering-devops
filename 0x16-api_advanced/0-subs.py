@@ -4,12 +4,16 @@
 '''
 import requests
 
+
 def number_of_subscribers(subreddit):
     '''
-    Return the no of SUbscribers 
+    Return the no of SUbscribers
     '''
-    res = requests.get('https://www.reddit.com/r/{}/about.json'.format(subreddit),
-            headers={'User-agent':'cli:api_advanced:v1.0.0 (by /u/ Yosinan'}, allow_redirects=False)
+    res = requests.get(
+        'https://www.reddit.com/r/{}/about.json'.format(subreddit),
+        headers={
+            'User-agent': 'cli:api_advanced:v1.0.0 (by /u/ Yosinan'},
+        allow_redirects=False)
     if res.status_code == 200:
         return res.json().get('data').get('subscribers')
     else:
