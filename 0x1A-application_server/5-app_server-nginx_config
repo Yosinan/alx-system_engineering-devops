@@ -1,4 +1,4 @@
-# Configures Nginx to serve the route /airbnb-dynamic/number_odd_or_even/(any integer)
+# Configures Nginx to serve the route web_dynamic/2-hbnb.py on port 5003
 # Nginx must serve this page both locally and on its public IP on port 80
 server {
         listen 80 default_server;
@@ -37,6 +37,21 @@ rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
 	# serve /number_odd_or_even/
 	location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
         	proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+        }
+
+	 # Serve API from AirBnB_clone_v3
+    location /api {
+        proxy_pass http://127.0.0.1:5002/api;
+    }
+
+	# Configure /2-hbnb route from AirBnB_clone_v4 as root location
+    	location / {
+        	proxy_pass http://127.0.0.1:5003/2-hbnb;
+        }
+
+    	# Serve static content from AirBnB_clone_v4
+    	location /static {
+        	proxy_pass http://127.0.0.1:5003;
         }
         error_page 404 /404.html;
         rewrite ^/redirect_me/?.*$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
